@@ -34,7 +34,7 @@ Vector2 bounds = initializeVector2D;
 const int numTypeOne = 1000;
 const int numTypeTwo = 1000;
 const int numTypeThree = 1000;
-const int numTypeFour = 000;
+const int numTypeFour = 250;
 
 class particleData
 {
@@ -128,7 +128,7 @@ void update()
 
                 if(particle.type == 4 && particleDetected.type != 4)
                 {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) / (dist * dist), (particleDetected.position.y - particle.position.y) / (dist * dist)};
+                    particle.Direction = { (particleDetected.position.x - particle.position.x) / (dist * particle.DrawRadius), (particleDetected.position.y - particle.position.y) / (dist * particle.DrawRadius)};
                 }
 
                 if(particle.type == 4 && particleDetected.type == 4)
@@ -227,6 +227,7 @@ int main() {
         if (particle.id >= numTypeOne + numTypeTwo + numTypeThree && particle.id < numTypeOne + numTypeTwo + numTypeThree + numTypeFour)
         {
             particle.type = 4;
+            particle.DrawRadius += std::rand() % 5 - 1;
         }
     }
 

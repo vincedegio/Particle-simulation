@@ -30,9 +30,9 @@ public:
 static int lastID = 0;
 const float maxSpeed = 10000;
 Vector2 bounds = initializeVector2D;
-const int numTypeOne = 500;
-const int numTypeTwo = 500;
-const int numTypeThree = 500;
+const int numTypeOne = 000;
+const int numTypeTwo = 3000;
+const int numTypeThree = 3000;
 
 class particleData
 {
@@ -118,6 +118,11 @@ void update()
                 {
                     particle.Direction = { (particleDetected.position.x - particle.position.x) / dist, (particleDetected.position.y - particle.position.y) / dist };
                 }
+
+                if (particle.type == 3 && particleDetected.type == 3)
+                {
+                    particle.Direction = { (particleDetected.position.x - particle.position.x) / dist * -1, (particleDetected.position.y - particle.position.y) / dist * -1 };
+                }
             }
             else
             {
@@ -189,7 +194,7 @@ int main() {
     {
         particle.position = { (float)(std::rand() % GetScreenWidth()), (float)(std::rand() % GetScreenHeight()) };
 
-        if (particle.id = numTypeOne)
+        if (particle.id == numTypeOne)
         {
             particle.type = 1;
             particle.drag = 0.1;

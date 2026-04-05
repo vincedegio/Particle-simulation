@@ -31,9 +31,9 @@ public:
 static int lastID = 0;
 const float maxSpeed = 10000;
 Vector2 bounds = initializeVector2D;
-const int numTypeOne = 000;
-const int numTypeTwo = 3000;
-const int numTypeThree = 3000;
+const int numTypeOne = 2000;
+const int numTypeTwo = 2000;
+const int numTypeThree = 2000;
 
 class particleData
 {
@@ -41,7 +41,7 @@ public:
 
     int id = 0;
     float Attraction = 4;
-    const float range = 100;
+    float range = 100;
     float collisionRange = 10;
     float drag = 0.1;
     float velocityX = 0;

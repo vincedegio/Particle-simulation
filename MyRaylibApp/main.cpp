@@ -30,9 +30,9 @@ public:
 static int lastID = 0;
 const float maxSpeed = 10000;
 Vector2 bounds = initializeVector2D;
-const int numTypeOne = 7000;
-const int numTypeTwo = 000;
-const int numTypeThree = 0000;
+const int numTypeOne = 000;
+const int numTypeTwo = 3000;
+const int numTypeThree = 3000;
 
 class particleData
 {
@@ -50,7 +50,7 @@ public:
     Vector2 CollisionAttractions = initializeVector2D;
     Vector2 position = initializeVector2D;
     float DrawRadius = 3;
-    int type = 1;
+    int type = 2;
 
     particleData() {
         id = lastID;
@@ -114,9 +114,14 @@ void update()
                     particle.Direction = { (particleDetected.position.x - particle.position.x) / dist, (particleDetected.position.y - particle.position.y) / dist };
                 }
 
-                if (particle.type == 3 && particleDetected.type == 3)
+                if (particle.type == 2 && particleDetected.type == 2)
                 {
                     particle.Direction = { (particleDetected.position.x - particle.position.x) / dist, (particleDetected.position.y - particle.position.y) / dist };
+                }
+
+                if (particle.type == 3 && particleDetected.type == 3)
+                {
+                    particle.Direction = { (particleDetected.position.x - particle.position.x) / dist * -1, (particleDetected.position.y - particle.position.y) / dist * -1 };
                 }
             }
             else
@@ -189,17 +194,17 @@ int main() {
     {
         particle.position = { (float)(std::rand() % GetScreenWidth()), (float)(std::rand() % GetScreenHeight()) };
 
-        if (particle.id <= numTypeOne)
+        if (particle.id == numTypeOne)
         {
             particle.type = 1;
             particle.drag = 0.1;
         }
 
-        if (particle.id > numTypeOne && particle.id <= numTypeOne + numTypeTwo)
+        if (particle.id >= numTypeOne && particle.id < numTypeOne + numTypeTwo)
         {
             particle.type = 2;
         }
-        if (particle.id > numTypeOne + numTypeTwo && particle.id < numTypeOne + numTypeTwo + numTypeThree)
+        if (particle.id >= numTypeOne + numTypeTwo && particle.id < numTypeOne + numTypeTwo + numTypeThree)
         {
             particle.type = 3;
             particle.DrawRadius -= 1;

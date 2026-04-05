@@ -10,6 +10,7 @@
 #include <ctime>
 #include <algorithm>
 #include <iostream>
+#include <cmath>
 #include "raylib.h"
 
 #define initializeVector2D {0, 0}
@@ -77,7 +78,7 @@ void update()
         {
             if (particleDetected.id == particle.id) continue;
 
-            float dist = sqrt((particleDetected.position.x - particle.position.x) * (particleDetected.position.x - particle.position.x) + (particleDetected.position.y - particle.position.y) * (particleDetected.position.y - particle.position.y));
+            float dist = std::sqrt((particleDetected.position.x - particle.position.x) * (particleDetected.position.x - particle.position.x) + (particleDetected.position.y - particle.position.y) * (particleDetected.position.y - particle.position.y));
 
             if (dist > particle.range) continue;
 

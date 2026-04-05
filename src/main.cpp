@@ -31,7 +31,7 @@ public:
 static int lastID = 0;
 const float maxSpeed = 10000;
 Vector2 bounds = initializeVector2D;
-const int numTypeOne = 1000;
+const int numTypeOne = 2000;
 const int numTypeTwo = 2000;
 const int numTypeThree = 2000;
 

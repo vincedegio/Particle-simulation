@@ -17,15 +17,16 @@
 
 const float maxSpeed = 10000;
 Vector2 bounds = initializeVector2D;
-const int numTypeOne = 4973;
-const int numTypeTwo = 2000;
-const int numTypeThree = 2000;
+const int numTypeOne = 1000;
+const int numTypeTwo = 1000;
+const int numTypeThree = 1000;
+const int numTypeFour = 000;
 
 //attraction randomized value = ((std::rand() % 750)) + 250
 //range rondomized value = ((std::rand() % 750)) + 250
 //collision range randomized value = (std::rand() % 15) + 5
 
-particleData particles[numTypeOne + numTypeTwo + numTypeThree];
+particleData particles[numTypeOne + numTypeTwo + numTypeThree + numTypeFour];
 
 void update()
 {
@@ -88,6 +89,16 @@ void update()
                 {
                     particle.Direction = { (particleDetected.position.x - particle.position.x) * inversDist * -1, (particleDetected.position.y - particle.position.y) * inversDist * -1 };
                 }
+
+                if(particle.type == ParticleTypes::PARTICLE4 && particleDetected.type != ParticleTypes::PARTICLE4)
+                {
+                    particle.Direction = { (particleDetected.position.x - particle.position.x) / (dist * dist), (particleDetected.position.y - particle.position.y) / (dist * dist)};
+                }
+
+                if(particle.type == ParticleTypes::PARTICLE4 && particleDetected.type == ParticleTypes::PARTICLE4)
+                {
+                    particle.Direction = { (particleDetected.position.x - particle.position.x) / 10, (particleDetected.position.y - particle.position.y) / 10};
+                }
             }
             else
             {
@@ -145,6 +156,10 @@ void update()
         {
             DrawCircle(particle.position.x, particle.position.y, particle.DrawRadius, RED);
         }
+        else if (particle.type == ParticleTypes::PARTICLE4)
+        {
+            DrawCircle(particle.position.x, particle.position.y, particle.DrawRadius, WHITE);
+        }
     }
 }
 
@@ -164,7 +179,6 @@ int main() {
             particle.type = ParticleTypes::PARTICLE1;
             particle.drag = 0.1;
         }
-
         if (particle.id >= numTypeOne && particle.id < numTypeOne + numTypeTwo)
         {
             particle.type = ParticleTypes::PARTICLE2;
@@ -173,6 +187,10 @@ int main() {
         {
             particle.type = ParticleTypes::PARTICLE3;
             particle.DrawRadius -= 1;
+        }
+        if (particle.id >= numTypeOne + numTypeTwo + numTypeThree && particle.id < numTypeOne + numTypeTwo + numTypeThree + numTypeFour)
+        {
+            particle.type = ParticleTypes::PARTICLE4;
         }
     }
 

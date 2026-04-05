@@ -6,7 +6,8 @@
 enum class ParticleTypes : uint8_t {
     PARTICLE1 = 0,
     PARTICLE2 = 1,
-    PARTICLE3 = 2
+    PARTICLE3 = 2,
+    PARTICLE4 = 3
 }; 
 
 #endif
